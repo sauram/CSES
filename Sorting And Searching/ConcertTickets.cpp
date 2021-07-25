@@ -17,6 +17,12 @@ int main(){
     sort(ticketsPrice.begin(), ticketsPrice.end());
 
     for(int i=0;i<numberofCustomers;i++){
+        if(binary_search(ticketsPrice.begin(), ticketsPrice.end(),customersPrice[i])){
+            int index = lower_bound(ticketsPrice.begin(), ticketsPrice.end(), customersPrice[i]) - ticketsPrice.begin();
+            cout<<ticketsPrice[index]<<"\n";
+            ticketsPrice.erase(ticketsPrice.begin()+index);
+            continue;
+        }
         int index = upper_bound(ticketsPrice.begin(), ticketsPrice.end(), customersPrice[i]) - ticketsPrice.begin();
         index--;
         if(index>=0){
